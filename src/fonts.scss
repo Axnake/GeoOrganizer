@@ -1,0 +1,65 @@
+@import "../src/assets/fonts/ProximaSoft/stylesheet.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+@mixin Header1 {
+
+  font-family: Proxima Soft, serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@mixin Header2 {
+
+  font-family: Proxima Soft, serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@mixin Header3 {
+
+  font-family: Proxima Soft, serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@mixin Body {
+
+  font-family: Proxima Soft, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin SubBody  {
+
+  font-family: Proxima Soft, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin SubBody2  {
+
+  font-family: Proxima Soft, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+@mixin SubBody3  {
+
+  font-family: Proxima Soft, serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

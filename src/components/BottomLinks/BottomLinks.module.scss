@@ -1,0 +1,20 @@
+@import "../../colors.scss";
+@import "/src/fonts";
+
+.link {
+  width: 100%;
+}
+
+.link a{
+  text-decoration: none;
+}
+
+.link1 {
+  @include SubBody3;
+  color: var(--darkgray);
+}
+
+.link2 {
+  @include SubBody;
+  color: var(--darkgray);
+}

@@ -1,0 +1,41 @@
+@import "../../colors.scss";
+@import "/src/fonts";
+
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 340px;
+}
+
+.title {
+  @include Header2;
+  color: var(--black);
+}
+
+
+.input, .button {
+  @include Body;
+
+  display: flex;
+  width: 343px;
+  padding: 16px;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.input {
+  background: var(--darklight);
+  align-items: flex-start;
+}
+
+
+.button {
+  background: var(--green);
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+

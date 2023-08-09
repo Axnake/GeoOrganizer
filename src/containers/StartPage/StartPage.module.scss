@@ -1,0 +1,22 @@
+@import "../../colors.scss";
+@import "/src/fonts";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.main {
+  min-width: 323px;
+  min-height: 367px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 76px;
+}
+
