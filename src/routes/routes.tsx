@@ -4,6 +4,7 @@ import {Routes, Route} from "react-router-dom";
 
 export default () => (
     <Routes>
+        <Route path='/' element={<SignIn />}/>
         <Route path='/auth/sign-up' element={<SignUp />}/>
         <Route path='/auth/sign-in' element={<SignIn />}/>
     </Routes>
