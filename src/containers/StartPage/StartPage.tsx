@@ -1,27 +1,22 @@
+import Title from "../../components/Title";
+
+import { FC } from "react";
+
 import styles from './StartPage.module.scss';
-import {Title} from "../../components/Title";
-import {Auth} from "../../components/Auth";
-import {useState} from "react";
-import {Reg} from "../../components/Reg";
-import {FormVariant} from "./types.ts";
+import Routes from "../../routes/routes.tsx";
 
-// import {Reg} from "../../components/Reg";
 
-function StartPage() {
-    const [currentForm, setCurrentForm] = useState(FormVariant.registration)
-    const form = currentForm === FormVariant.registration ? <Reg currentForm={currentForm} setCurrentForm={setCurrentForm}/> : <Auth currentForm={currentForm} setCurrentForm={setCurrentForm}/>
+const StartPage: FC<any> = () => {
+
 
     return (
         <div className={styles.container}>
             <div className={styles.main}>
                 <Title />
-                {/*<Reg />*/}
-                {/*<Auth />*/}
-
-                {form}
+                <Routes />
             </div>
         </div>
     );
 }
 
-export { StartPage };
+export default StartPage;

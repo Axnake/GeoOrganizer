@@ -1,5 +1,5 @@
-@import "../../colors.scss";
-@import "/src/fonts";
+@import "/src/styles/colors";
+@import "/src/styles/fonts";
 
 .container {
   display: flex;
@@ -47,13 +47,6 @@
   cursor: pointer;
 }
 
-.link {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-}
-
 .input__file input {
 
   display: none;
@@ -67,23 +60,16 @@
   justify-content: center;
   cursor: pointer;
 }
-//.input__file span{
-//  @include Body;
-//  color: var(--black);
-//  background: var(--green);
-//
-//  width: 100%;
-//  position: relative;
-//  display: inline-block;
-//  cursor: pointer;
-//  outline: none;
-//  text-decoration: none;
-//  vertical-align: middle;
-//
-//  text-align: center;
-//  border-radius: 4px;
-//  padding: 10px 20px;
-//  border: none;
-//  margin: 0;
-//}
 
+.link{
+  text-decoration: none;
+}
+
+.link1 {
+  @include SubBody2;
+  color: var(--darkgray);
+}
+.link2 {
+  @include SubBody;
+  color: var(--darkgray);
+}

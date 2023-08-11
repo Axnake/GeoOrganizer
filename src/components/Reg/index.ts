@@ -1,1 +1,0 @@
-export { Reg } from './Reg.tsx'

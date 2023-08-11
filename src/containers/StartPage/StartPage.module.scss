@@ -1,5 +1,5 @@
-@import "../../colors.scss";
-@import "/src/fonts";
+@import "../../styles/colors";
+@import "../../styles/fonts";
 
 .container {
   width: 100vw;
@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 
 }
 
@@ -18,5 +19,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 76px;
+
+
 }
 

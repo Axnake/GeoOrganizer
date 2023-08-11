@@ -1,5 +1,5 @@
 import styles from "./Greeting.module.scss";
-import {Loader} from "../Loader";
+import Loader from "../Loader";
 
 function Greeting() {
     return (
@@ -10,4 +10,4 @@ function Greeting() {
     );
 }
 
-export {Greeting};
+export default Greeting;

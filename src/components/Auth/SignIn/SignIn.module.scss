@@ -1,5 +1,5 @@
-@import "../../colors.scss";
-@import "/src/fonts";
+@import "/src/styles/colors";
+@import "/src/styles/fonts";
 
 .container {
   display: inline-flex;
@@ -39,3 +39,15 @@
   cursor: pointer;
 }
 
+.link{
+  text-decoration: none;
+}
+
+.link1 {
+  @include SubBody2;
+  color: var(--darkgray);
+}
+.link2 {
+  @include SubBody;
+  color: var(--darkgray);
+}

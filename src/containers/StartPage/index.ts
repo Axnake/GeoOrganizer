@@ -1,1 +1,1 @@
-export { StartPage } from './StartPage.tsx';
+export { default } from './StartPage.tsx';

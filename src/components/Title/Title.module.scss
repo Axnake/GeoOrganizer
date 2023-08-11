@@ -1,5 +1,5 @@
-@import "../../colors.scss";
-@import "/src/fonts";
+@import "/src/styles/colors";
+@import "/src/styles/fonts";
 
 
 .container {
@@ -21,7 +21,12 @@
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  position: absolute;
   user-select: none;
+
+  width: 40%;
+
+  min-width: 20%;
 }
 
 .icon{
@@ -30,13 +35,11 @@
 }
 
 .leftAngle {
-  position: absolute;
   left: 0;
   top: 0;
 }
 
 .rightAngle {
-  position: absolute;
   right: 0;
   bottom: 0;
 }

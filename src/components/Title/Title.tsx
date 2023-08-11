@@ -14,4 +14,4 @@ function Title() {
     );
 }
 
-export {Title};
+export default Title;

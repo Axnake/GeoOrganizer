@@ -1,13 +1,10 @@
-import styles from "./Reg.module.scss";
-import {BottomLinks} from "../BottomLinks";
-import {FormVariant} from "../../containers/StartPage/types.ts";
+import {FC} from "react";
 
-interface RegProps {
-    currentForm: FormVariant
-    setCurrentForm: (value: FormVariant) => void
-}
-function Reg( { currentForm, setCurrentForm }: RegProps) {
-    function hadlerSubmit(event: any) {
+import styles from "./SignUp.module.scss";
+import {Link} from "react-router-dom";
+
+const SignUp: FC<any> = () => {
+    const hadlerSubmit = (event: any) => {
         event.preventDefault()
         console.log("click submit")
     }
@@ -29,10 +26,10 @@ function Reg( { currentForm, setCurrentForm }: RegProps) {
                         >
                             Зарегистрироваться
                         </button>
-
-                        <div className={styles.link}>
-                            <BottomLinks currentForm={currentForm} setCurrentForm={setCurrentForm}/>
-                        </div>
+                        <Link className={styles.link} to='/auth/sign-in'>
+                            <span className={styles.link1}>Есть аккаунт? </span>
+                            <span className={styles.link2}>Авторизоваться</span>
+                        </Link>
                     </div>
                     <div className={styles.right}>
                         <input className={styles.input} required type="text" placeholder="Номер телефона"/>
@@ -54,4 +51,4 @@ function Reg( { currentForm, setCurrentForm }: RegProps) {
     );
 }
 
-export {Reg};
+export default SignUp;

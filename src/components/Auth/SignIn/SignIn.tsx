@@ -1,13 +1,9 @@
-import styles from './Auth.module.scss'
-import {BottomLinks} from "../BottomLinks";
-import {FormVariant} from "../../containers/StartPage/types.ts";
+import {FC} from "react";
+import styles from "./SignIn.module.scss"
+import {Link} from "react-router-dom";
 
-interface AuthProps {
-    currentForm: FormVariant
-    setCurrentForm: (value: FormVariant) => void
-}
-function Auth({currentForm, setCurrentForm}: AuthProps) {
-    function hadlerSubmit(event: any) {
+const SignIn: FC <any> = () => {
+    const hadlerSubmit = (event: any) => {
         event.preventDefault()
         console.log("click submit")
     }
@@ -18,18 +14,21 @@ function Auth({currentForm, setCurrentForm}: AuthProps) {
                 <h2 className={styles.title}>Вход</h2>
                 <input className={styles.input} type="text" placeholder="Почта"/>
                 <input className={styles.input} type="password" placeholder="Пароль"/>
+
                 <button
                     className={styles.button}
                     type="submit"
                 >
                     Войти
                 </button>
+                <Link className={styles.link} to='/auth/sign-up'>
+                    <span className={styles.link1}>Нет аккаунта? </span>
+                    <span className={styles.link2}>Зарегистрироваться</span>
+                </Link>
             </form>
-
-            <BottomLinks currentForm={currentForm} setCurrentForm={setCurrentForm}/>
         </>
 
     );
 }
 
-export {Auth};
+export default SignIn;
