@@ -1,25 +1,144 @@
-import {FC} from "react";
-
-import styles from "./SignUp.module.scss";
+import {FC, useState} from "react";
 import {Link} from "react-router-dom";
 
+import Modal from "../../Modal";
+import UploadAvatar from "../../UploadAvatar";
+
+import styles from "./SignUp.module.scss";
+import { useForm } from "react-hook-form";
+
+
+type FormValues = {
+    firstName: string;
+    lastName: string;
+    fathersName: string;
+    nickName: string;
+    phoneNumber: number;
+    email: string;
+    password: string;
+    checkPassword: string;
+    data: string
+};
 const SignUp: FC<any> = () => {
-    const hadlerSubmit = (event: any) => {
-        event.preventDefault()
-        console.log("click submit")
-    }
+
+    const {
+        register,
+        watch,
+        handleSubmit,
+        formState: {
+            errors
+        }
+    } = useForm<FormValues>({
+        mode: "onBlur",
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            fathersName: '',
+            nickName: '',
+            email: '',
+            password: '',
+            checkPassword: ''
+        }
+    })
+    const onSubmit = (data: FormValues) => alert(JSON.stringify(data))
+    const [modalActive, setModalActive] = useState(false)
     return (
 
-        <>
-            <form  onSubmit={hadlerSubmit} className={styles.container}>
+        <div className={styles.container}>
+            <form onSubmit={handleSubmit(onSubmit)} >
                 <h2 className={styles.title}>Регистрация</h2>
                 <div className={styles.block__container}>
                     <div className={styles.left}>
-                        <input className={styles.input} required type="text" placeholder="Имя"/>
-                        <input className={styles.input} required type="text" placeholder="Фамилия"/>
-                        <input className={styles.input} type="text" placeholder="Отчество"/>
-                        <input className={styles.input} required type="text" placeholder="Никнейм"/>
+                        {/*firstName*/}
+                        <input
+                            {...register("firstName", {
+                                required: "Поле обязательно к заполнению",
+                                pattern: {
+                                    value: /^[a-zA-Zа-яА-Я]+$/i,
+                                    message: "В поле должны быть только буквы"
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: "Не менее 2 символов"
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: "Не более 15 символов"
+                                },
+                            })}
+                            className={styles.input}
+                            type="text"
+                            placeholder="Имя"
+                        />
+                        <div className={styles.error}>
+                            {errors?.firstName && <p>{errors?.firstName?.message || "Некорректное имя"}</p>}
+                        </div>
 
+
+                        {/*lastName*/}
+                        <input
+                            {...register("lastName", {
+                                required: "Поле обязательно к заполнению",
+                                pattern: {
+                                    value: /^[a-zA-Zа-яА-Я]+$/i,
+                                    message: "В поле должны быть только буквы"
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: "Не менее 2 символов"
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: "Не более 15 символов"
+                                },
+                            })}
+                            className={styles.input}
+                            type="text"
+                            placeholder="Фамилия"
+                        />
+                        <div className={styles.error}>
+                            {errors?.lastName && <p>{errors?.lastName?.message || "Некорректная фамилия"}</p>}
+                        </div>
+
+
+                        {/*fathersName*/}
+                        <input
+                            {...register("fathersName", {
+                                pattern: {
+                                    value: /^[a-zA-Zа-яА-Я]+$/i,
+                                    message: "В поле должны быть только буквы"
+                                },
+                                minLength: {
+                                    value: 2,
+                                    message: "Не менее 2 символов"
+                                },
+                                maxLength: {
+                                    value: 15,
+                                    message: "Не более 15 символов"
+                                },
+                            })}
+                            className={styles.input}
+                            type="text"
+                            placeholder="Отчество (необязательно)"
+                        />
+                        <div className={styles.error}>
+                            {errors?.fathersName && <p>{errors?.fathersName?.message || "Некорректное отчество"}</p>}
+                        </div>
+
+
+                        {/*nickName*/}
+                        <input
+                            {...register("nickName", {
+                                required: "Поле обязательно к заполнению",
+                                minLength: 4,
+                            })}
+                            className={styles.input}
+                            type="text"
+                            placeholder="Никнейм"
+                        />
+                        <div className={styles.error}>
+                            {errors?.nickName && <p>{errors?.nickName?.message || "Поле не соответствует требованиям"}</p>}
+                        </div>
                         <button
                             className={styles.button}
                             type="submit"
@@ -32,22 +151,92 @@ const SignUp: FC<any> = () => {
                         </Link>
                     </div>
                     <div className={styles.right}>
-                        <input className={styles.input} required type="text" placeholder="Номер телефона"/>
-                        <input className={styles.input} required type="text" placeholder="Почта"/>
-                        <input className={styles.input} required type="password" placeholder="Пароль"/>
-                        <input className={styles.input} required type="password" placeholder="Повторите пароль"/>
-                        <label className={styles.input__file}>
-                            <input type="file"/>
-                            <span>Загрузить фото</span>
-                        </label>
+                        {/*<input className={styles.input} required type="text" placeholder="Номер телефона"/>*/}
+                        {/*<input className={styles.input} required type="text" placeholder="Почта"/>*/}
+                        {/*<input className={styles.input} required type="password" placeholder="Пароль"/>*/}
+                        {/*<input className={styles.input} required type="password" placeholder="Повторите пароль"/>*/}
 
+
+                        {/*phoneNumber*/}
+                        <input
+                            {...register("phoneNumber", {
+                                required: "Поле обязательно к заполнению",
+                                minLength: 11,
+                            })}
+                            className={styles.input}
+                            type="number"
+                            placeholder="Номер телефона"
+                        />
+                        <div className={styles.error}>
+                            {errors?.phoneNumber && <p>{errors?.phoneNumber?.message || "Некорректный номер телефона"}</p>}
+                        </div>
+
+
+                        {/*email*/}
+                        <input
+                            {...register("email", {
+                                required: "Поле обязательно к заполнению",
+                                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+                            })}
+                            className={styles.input}
+                            type="text"
+                            placeholder="Почта"
+                        />
+                        <div className={styles.error}>
+                            {errors?.email && <p>{errors?.email?.message || "Не верный формат почты"}</p>}
+                        </div>
+
+
+                        {/*password*/}
+                        <input
+                            {...register("password", {
+                                required: "Поле обязательно к заполнению",
+                                pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+                            })}
+                            className={styles.input}
+                            type="password"
+                            placeholder="Пароль"
+                        />
+                        <div className={styles.error}>
+                            {errors?.password && <p>{errors?.password?.message || "Пароль должен содержать не менее 8 символов, включая хотя бы одну букву и одну цифру"}</p>}
+                        </div>
+
+
+                        {/*checkPassword*/}
+                        <input
+                            {...register("checkPassword", {
+                                required: "Поле обязательно к заполнению",
+                                validate: (value) => {
+                                    if (watch('password') !== value){
+                                        return "Пароль не совпадает"
+                                    }
+                                }
+                            })}
+                            className={styles.input}
+                            type="password"
+                            placeholder="Повторите пароль"
+                        />
+                        <div className={styles.error}>
+                            {errors?.checkPassword && <p>{errors?.checkPassword?.message || "Поле не соответствует требованиям"}</p>}
+                        </div>
 
                     </div>
                 </div>
-
             </form>
+            <div>
+                {/*Чувак который создает проблемы*/}
+                <button
+                    className={styles.button}
+                    onClick={ () => setModalActive(true)}
+                >
+                    Загрузить фото
+                </button>
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <UploadAvatar />
+                </Modal>
+            </div>
 
-        </>
+        </div>
     );
 }
 

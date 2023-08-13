@@ -1,7 +1,8 @@
 import {BrowserRouter} from "react-router-dom";
 import StartPage from "../StartPage";
+import {FC} from "react";
 
-function App() {
+const App: FC<any> = () => {
 
   return (
     <>
