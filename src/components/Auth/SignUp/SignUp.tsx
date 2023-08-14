@@ -4,8 +4,9 @@ import {Link} from "react-router-dom";
 import Modal from "../../Modal";
 import UploadAvatar from "../../UploadAvatar";
 
+import { useForm } from "react-hook-form";
+
 import styles from "./SignUp.module.scss";
-import {FormProvider, useForm,} from "react-hook-form";
 
 
 type FormValues = {
@@ -22,7 +23,6 @@ type FormValues = {
 };
 const SignUp: FC<any> = () => {
     const [preview, setPreview] = useState(null)
-    const methods = useForm({mode: "onBlur"})
     const {
         register,
         watch,
@@ -48,8 +48,6 @@ const SignUp: FC<any> = () => {
     return (
 
         <div className={styles.container}>
-            <FormProvider {...methods}>
-
             <form onSubmit={handleSubmit(onSubmit)} >
                 <h2 className={styles.title}>Регистрация</h2>
                 <div className={styles.block__container}>
@@ -240,8 +238,6 @@ const SignUp: FC<any> = () => {
                     </div>
                 </div>
             </form>
-            </FormProvider>
-
 
         </div>
     );
