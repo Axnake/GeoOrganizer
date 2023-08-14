@@ -5,7 +5,7 @@ import Modal from "../../Modal";
 import UploadAvatar from "../../UploadAvatar";
 
 import styles from "./SignUp.module.scss";
-import { useForm } from "react-hook-form";
+import {FormProvider, useForm,} from "react-hook-form";
 
 
 type FormValues = {
@@ -17,10 +17,12 @@ type FormValues = {
     email: string;
     password: string;
     checkPassword: string;
-    data: string
+    data: string;
+    preview: string;
 };
 const SignUp: FC<any> = () => {
-
+    const [preview, setPreview] = useState(null)
+    const methods = useForm({mode: "onBlur"})
     const {
         register,
         watch,
@@ -37,14 +39,17 @@ const SignUp: FC<any> = () => {
             nickName: '',
             email: '',
             password: '',
-            checkPassword: ''
+            checkPassword: '',
+            preview: ''
         }
     })
-    const onSubmit = (data: FormValues) => alert(JSON.stringify(data))
+    const onSubmit = (data: FormValues) => alert(JSON.stringify({...data, preview}))
     const [modalActive, setModalActive] = useState(false)
     return (
 
         <div className={styles.container}>
+            <FormProvider {...methods}>
+
             <form onSubmit={handleSubmit(onSubmit)} >
                 <h2 className={styles.title}>Регистрация</h2>
                 <div className={styles.block__container}>
@@ -219,22 +224,24 @@ const SignUp: FC<any> = () => {
                         <div className={styles.error}>
                             {errors?.checkPassword && <p>{errors?.checkPassword?.message || "Поле не соответствует требованиям"}</p>}
                         </div>
-
+                        <div>
+                            {/*Чувак который создает проблемы*/}
+                            <button
+                                type="button"
+                                className={styles.button}
+                                onClick={ () => setModalActive(true)}
+                            >
+                                Загрузить фото
+                            </button>
+                            <Modal active={modalActive} setActive={setModalActive}>
+                                <UploadAvatar preview={preview} setPreview={setPreview}/>
+                            </Modal>
+                        </div>
                     </div>
                 </div>
             </form>
-            <div>
-                {/*Чувак который создает проблемы*/}
-                <button
-                    className={styles.button}
-                    onClick={ () => setModalActive(true)}
-                >
-                    Загрузить фото
-                </button>
-                <Modal active={modalActive} setActive={setModalActive}>
-                    <UploadAvatar />
-                </Modal>
-            </div>
+            </FormProvider>
+
 
         </div>
     );
