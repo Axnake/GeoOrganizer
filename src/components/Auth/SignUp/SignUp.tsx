@@ -1,15 +1,18 @@
 import {FC, useState} from "react";
 import {Link} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import Modal from "../../Modal";
 import UploadAvatar from "../../UploadAvatar";
 
-import { useForm } from "react-hook-form";
 
 import styles from "./SignUp.module.scss";
 
 
-type FormValues = {
+interface FormValues {
     firstName: string;
     lastName: string;
     fathersName: string;
@@ -20,7 +23,7 @@ type FormValues = {
     checkPassword: string;
     data: string;
     preview: string;
-};
+}
 const SignUp: FC = () => {
     const [preview, setPreview] = useState(null)
     const {
@@ -33,8 +36,26 @@ const SignUp: FC = () => {
     } = useForm<FormValues>({
         mode: "onBlur",
     })
-    const onSubmit = (data: object) => alert(JSON.stringify({...data, preview}))
+    const notify = () => {
+        toast.success('Регистрация прошла успешно', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+    const onSubmit = (data: object) => {
+        alert(JSON.stringify({...data, preview}))
+        notify()
+    }
     const [modalActive, setModalActive] = useState(false)
+
+
+
     return (
 
         <>
@@ -140,7 +161,18 @@ const SignUp: FC = () => {
                         >
                             Зарегистрироваться
                         </button>
-
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={2000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                     <div
                         className={styles.right}
