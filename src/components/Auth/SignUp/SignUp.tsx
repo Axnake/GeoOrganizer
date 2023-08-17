@@ -135,7 +135,7 @@ const SignUp: FC = () => {
                             })}
                             className={styles.input}
                             type="text"
-                            placeholder="Отчество (необязательно)"
+                            placeholder="Отчество"
                         />
                         <div className={styles.error}>
                             {errors?.fathersName && <p>{errors?.fathersName?.message || "Некорректное отчество"}</p>}
@@ -220,7 +220,7 @@ const SignUp: FC = () => {
                             placeholder="Пароль"
                         />
                         <div className={styles.error}>
-                            {errors?.password && <p>{errors?.password?.message || "Пароль должен содержать не менее 8 символов, включая хотя бы одну букву и одну цифру"}</p>}
+                            {errors?.password && <p>{errors?.password?.message || "Поле должно содержать не менее 8 символов, включая букву и цифру"}</p>}
                         </div>
 
 
