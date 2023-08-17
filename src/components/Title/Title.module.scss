@@ -16,30 +16,28 @@
   font-weight: 700;
 }
 
-.leftAngle, .rightAngle {
-  pointer-events: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  position: absolute;
-  user-select: none;
 
-  width: 40%;
-
-  min-width: 20%;
-}
 
 .icon{
   width: 43px;
   height: 43px;
 }
 
-.leftAngle {
-  left: 0;
-  top: 0;
-}
-
-.rightAngle {
-  right: 0;
-  bottom: 0;
-}
+//.leftAngle, .rightAngle {
+//  //pointer-events: none;
+//  //-moz-user-select: none;
+//  //-webkit-user-select: none;
+//  //-ms-user-select: none;
+//  //user-select: none;
+//  position: absolute;
+//  width: 30vw;
+//}
+//.leftAngle {
+//  left: 0;
+//  top: 0;
+//}
+//
+//.rightAngle {
+//  right: 0;
+//  bottom: 0;
+//}

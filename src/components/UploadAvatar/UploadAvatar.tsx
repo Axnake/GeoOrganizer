@@ -1,17 +1,16 @@
-import { useEffect, useState} from "react";
+import {Dispatch, FC, SetStateAction, useEffect, useState} from "react";
 import styles from './UploadAvatar.module.scss'
 import Avatar from "react-avatar-edit";
-
 interface IUploadAvatarProps {
     preview: string | null,
-    setPreview: (preview: any) => void
+    setPreview: Dispatch<SetStateAction<null>>;
 }
-const UploadAvatar = ({preview, setPreview}: IUploadAvatarProps) => {
+const UploadAvatar:FC<IUploadAvatarProps> = ({preview, setPreview}) => {
     const [src, setSrc] = useState(undefined)
     const onClose = () => {
         setPreview(null)
     }
-    const onCrop = (view: string) => {
+    const onCrop = (view) => {
         setPreview(view)
     }
     useEffect( () => {
@@ -21,14 +20,16 @@ const UploadAvatar = ({preview, setPreview}: IUploadAvatarProps) => {
     return (
         <div className={styles.avatar}>
             <Avatar
-                imageWidth={600}
+                width={500}
+                height={400}
+                imageWidth={500}
                 onCrop={onCrop}
                 onClose={onClose}
                 src={src}
             />
 
             <div className={styles.preview}>
-                {preview && <img width={300} src={preview} alt='alt'/>}
+                {preview && <img src={preview} alt='alt'/>}
             </div>
         </div>
     );

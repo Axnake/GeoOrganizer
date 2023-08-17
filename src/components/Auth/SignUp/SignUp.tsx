@@ -14,14 +14,14 @@ type FormValues = {
     lastName: string;
     fathersName: string;
     nickName: string;
-    phoneNumber: number;
+    phoneNumber: string;
     email: string;
     password: string;
     checkPassword: string;
     data: string;
     preview: string;
 };
-const SignUp: FC<any> = () => {
+const SignUp: FC = () => {
     const [preview, setPreview] = useState(null)
     const {
         register,
@@ -32,26 +32,18 @@ const SignUp: FC<any> = () => {
         }
     } = useForm<FormValues>({
         mode: "onBlur",
-        defaultValues: {
-            firstName: '',
-            lastName: '',
-            fathersName: '',
-            nickName: '',
-            email: '',
-            password: '',
-            checkPassword: '',
-            preview: ''
-        }
     })
-    const onSubmit = (data: FormValues) => alert(JSON.stringify({...data, preview}))
+    const onSubmit = (data: object) => alert(JSON.stringify({...data, preview}))
     const [modalActive, setModalActive] = useState(false)
     return (
 
-        <div className={styles.container}>
-            <form onSubmit={handleSubmit(onSubmit)} >
+        <>
+            <form className={styles.container} onSubmit={handleSubmit(onSubmit)} >
                 <h2 className={styles.title}>Регистрация</h2>
                 <div className={styles.block__container}>
-                    <div className={styles.left}>
+                    <div
+                        className={styles.left}
+                    >
                         {/*firstName*/}
                         <input
                             {...register("firstName", {
@@ -74,7 +66,7 @@ const SignUp: FC<any> = () => {
                             placeholder="Имя"
                         />
                         <div className={styles.error}>
-                            {errors?.firstName && <p>{errors?.firstName?.message || "Некорректное имя"}</p>}
+                            {errors?.firstName && <span>{errors?.firstName?.message || "Некорректное имя"}</span>}
                         </div>
 
 
@@ -148,26 +140,21 @@ const SignUp: FC<any> = () => {
                         >
                             Зарегистрироваться
                         </button>
-                        <Link className={styles.link} to='/auth/sign-in'>
-                            <span className={styles.link1}>Есть аккаунт? </span>
-                            <span className={styles.link2}>Авторизоваться</span>
-                        </Link>
-                    </div>
-                    <div className={styles.right}>
-                        {/*<input className={styles.input} required type="text" placeholder="Номер телефона"/>*/}
-                        {/*<input className={styles.input} required type="text" placeholder="Почта"/>*/}
-                        {/*<input className={styles.input} required type="password" placeholder="Пароль"/>*/}
-                        {/*<input className={styles.input} required type="password" placeholder="Повторите пароль"/>*/}
 
+                    </div>
+                    <div
+                        className={styles.right}
+                    >
 
                         {/*phoneNumber*/}
                         <input
                             {...register("phoneNumber", {
                                 required: "Поле обязательно к заполнению",
                                 minLength: 11,
+                                maxLength: 11
                             })}
                             className={styles.input}
-                            type="number"
+                            type="tel"
                             placeholder="Номер телефона"
                         />
                         <div className={styles.error}>
@@ -223,7 +210,7 @@ const SignUp: FC<any> = () => {
                             {errors?.checkPassword && <p>{errors?.checkPassword?.message || "Поле не соответствует требованиям"}</p>}
                         </div>
                         <div>
-                            {/*Чувак который создает проблемы*/}
+                            {/*Модалка*/}
                             <button
                                 type="button"
                                 className={styles.button}
@@ -235,11 +222,18 @@ const SignUp: FC<any> = () => {
                                 <UploadAvatar preview={preview} setPreview={setPreview}/>
                             </Modal>
                         </div>
+
                     </div>
+
                 </div>
+                <Link className={styles.link} to='/auth/sign-in'>
+                    <span className={styles.link1}>Есть аккаунт? </span>
+                    <span className={styles.link2}>Авторизоваться</span>
+                </Link>
+
             </form>
 
-        </div>
+        </>
     );
 }
 

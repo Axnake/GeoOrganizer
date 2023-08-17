@@ -8,8 +8,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 }
 
 .main {
@@ -19,7 +17,30 @@
   flex-direction: column;
   justify-content: center;
   gap: 76px;
-
-
 }
 
+.leftAngle, .rightAngle {
+  position: absolute;
+  width: 35vw;
+}
+.leftAngle {
+  left: 0;
+  top: 0;
+}
+
+.rightAngle {
+  right: 0;
+  bottom: 0;
+}
+
+@media (max-height: 768px) {
+  .rightAngle {
+    width: 25%;
+  }
+  .leftAngle{
+    width: 25%;
+  }
+  .main {
+    gap: 20px
+  }
+}
