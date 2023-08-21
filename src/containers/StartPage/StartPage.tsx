@@ -3,7 +3,7 @@ import Title from "../../components/Title";
 import { FC } from "react";
 
 import styles from './StartPage.module.scss';
-import Routers from "../../routes/routes.tsx";
+import Routers from "../../routes/router.tsx";
 import leftAngle from "../../assets/rightAngle.svg";
 import rightAngle from "../../assets/leftAngle.svg";
 

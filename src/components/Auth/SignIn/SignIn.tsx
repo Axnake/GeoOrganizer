@@ -1,11 +1,11 @@
 import {FC} from "react";
 import {Link} from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import styles from "./SignIn.module.scss"
 
-interface FormValues {
+interface IFormValues {
     email: string;
     password: string;
 }
@@ -17,11 +17,11 @@ const SignIn: FC = () => {
         formState: {
             errors
         }
-    } = useForm<FormValues>({
+    } = useForm<IFormValues>({
         mode: "onBlur",
     })
     const notify = () => {
-        toast.success('Регистрация прошла успешно', {
+        toast.success('Авторизация прошла успешно', {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -56,14 +56,13 @@ const SignIn: FC = () => {
                 <input
                     {...register("password", {
                         required: "Поле обязательно к заполнению",
-                        pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
                     })}
                     className={styles.input}
                     type="password"
                     placeholder="Пароль"
                 />
                 <div className={styles.error}>
-                    {errors?.password && <p>{errors?.password?.message || "Пароль должен содержать не менее 8 символов, включая хотя бы одну букву и одну цифру"}</p>}
+                    {errors?.password && <p>{errors?.password?.message}</p>}
                 </div>
 
                 <button
@@ -72,23 +71,12 @@ const SignIn: FC = () => {
                 >
                     Войти
                 </button>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={2000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
                 <Link className={styles.link} to='/auth/sign-up'>
                     <span className={styles.link1}>Нет аккаунта? </span>
                     <span className={styles.link2}>Зарегистрироваться</span>
                 </Link>
             </form>
+
         </>
 
     );

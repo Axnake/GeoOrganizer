@@ -1,9 +1,8 @@
 import {FC, useState} from "react";
 import {Link} from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import {useForm, ValidationRule} from "react-hook-form";
+import { toast } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
 
 import Modal from "../../Modal";
 import UploadAvatar from "../../UploadAvatar";
@@ -12,12 +11,12 @@ import UploadAvatar from "../../UploadAvatar";
 import styles from "./SignUp.module.scss";
 
 
-interface FormValues {
+interface IFormValues {
     firstName: string;
     lastName: string;
     fathersName: string;
     nickName: string;
-    phoneNumber: string;
+    phoneNumber: ValidationRule<RegExp>;
     email: string;
     password: string;
     checkPassword: string;
@@ -33,7 +32,7 @@ const SignUp: FC = () => {
         formState: {
             errors
         }
-    } = useForm<FormValues>({
+    } = useForm<IFormValues>({
         mode: "onBlur",
     })
     const notify = () => {
@@ -61,7 +60,7 @@ const SignUp: FC = () => {
         <>
             <form className={styles.container} onSubmit={handleSubmit(onSubmit)} >
                 <h2 className={styles.title}>Регистрация</h2>
-                <div className={styles.block__container}>
+                <div className={styles.blockContainer}>
                     <div
                         className={styles.left}
                     >
@@ -73,13 +72,9 @@ const SignUp: FC = () => {
                                     value: /^[a-zA-Zа-яА-Я]+$/i,
                                     message: "В поле должны быть только буквы"
                                 },
-                                minLength: {
-                                    value: 2,
-                                    message: "Не менее 2 символов"
-                                },
                                 maxLength: {
-                                    value: 15,
-                                    message: "Не более 15 символов"
+                                    value: 20,
+                                    message: "Поле должно содержать не более 20 символов"
                                 },
                             })}
                             className={styles.input}
@@ -87,7 +82,7 @@ const SignUp: FC = () => {
                             placeholder="Имя"
                         />
                         <div className={styles.error}>
-                            {errors?.firstName && <span>{errors?.firstName?.message || "Некорректное имя"}</span>}
+                            {errors?.firstName && <span>{errors?.firstName?.message}</span>}
                         </div>
 
 
@@ -99,13 +94,9 @@ const SignUp: FC = () => {
                                     value: /^[a-zA-Zа-яА-Я]+$/i,
                                     message: "В поле должны быть только буквы"
                                 },
-                                minLength: {
-                                    value: 2,
-                                    message: "Не менее 2 символов"
-                                },
                                 maxLength: {
-                                    value: 15,
-                                    message: "Не более 15 символов"
+                                    value: 20,
+                                    message: "Поле должно содержать не более 20 символов"
                                 },
                             })}
                             className={styles.input}
@@ -113,7 +104,7 @@ const SignUp: FC = () => {
                             placeholder="Фамилия"
                         />
                         <div className={styles.error}>
-                            {errors?.lastName && <p>{errors?.lastName?.message || "Некорректная фамилия"}</p>}
+                            {errors?.lastName && <p>{errors?.lastName?.message}</p>}
                         </div>
 
 
@@ -124,13 +115,9 @@ const SignUp: FC = () => {
                                     value: /^[a-zA-Zа-яА-Я]+$/i,
                                     message: "В поле должны быть только буквы"
                                 },
-                                minLength: {
-                                    value: 2,
-                                    message: "Не менее 2 символов"
-                                },
                                 maxLength: {
-                                    value: 15,
-                                    message: "Не более 15 символов"
+                                    value: 30,
+                                    message: "Поле должно содержать не более 30 символов"
                                 },
                             })}
                             className={styles.input}
@@ -138,7 +125,7 @@ const SignUp: FC = () => {
                             placeholder="Отчество"
                         />
                         <div className={styles.error}>
-                            {errors?.fathersName && <p>{errors?.fathersName?.message || "Некорректное отчество"}</p>}
+                            {errors?.fathersName && <p>{errors?.fathersName?.message}</p>}
                         </div>
 
 
@@ -146,14 +133,17 @@ const SignUp: FC = () => {
                         <input
                             {...register("nickName", {
                                 required: "Поле обязательно к заполнению",
-                                minLength: 4,
+                                maxLength: {
+                                    value: 25,
+                                    message: "Поле должно содержать не более 25 символов"
+                                },
                             })}
                             className={styles.input}
                             type="text"
                             placeholder="Никнейм"
                         />
                         <div className={styles.error}>
-                            {errors?.nickName && <p>{errors?.nickName?.message || "Поле не соответствует требованиям"}</p>}
+                            {errors?.nickName && <p>{errors?.nickName?.message}</p>}
                         </div>
                         <button
                             className={styles.button}
@@ -161,18 +151,7 @@ const SignUp: FC = () => {
                         >
                             Зарегистрироваться
                         </button>
-                        <ToastContainer
-                            position="top-right"
-                            autoClose={2000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                        />
+
                     </div>
                     <div
                         className={styles.right}
@@ -182,8 +161,7 @@ const SignUp: FC = () => {
                         <input
                             {...register("phoneNumber", {
                                 required: "Поле обязательно к заполнению",
-                                minLength: 11,
-                                maxLength: 11
+                                pattern: /^(\+7|8)?[\s-]?\(?[489][0-9]{2}\)?[\s-]?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}$/
                             })}
                             className={styles.input}
                             type="tel"
@@ -239,7 +217,7 @@ const SignUp: FC = () => {
                             placeholder="Повторите пароль"
                         />
                         <div className={styles.error}>
-                            {errors?.checkPassword && <p>{errors?.checkPassword?.message || "Поле не соответствует требованиям"}</p>}
+                            {errors?.checkPassword && <p>{errors?.checkPassword?.message}</p>}
                         </div>
                         <div>
                             {/*Модалка*/}

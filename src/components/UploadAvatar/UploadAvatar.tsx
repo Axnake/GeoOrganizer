@@ -20,9 +20,9 @@ const UploadAvatar:FC<IUploadAvatarProps> = ({preview, setPreview}) => {
     return (
         <div className={styles.avatar}>
             <Avatar
-                width={500}
-                height={400}
-                imageWidth={500}
+                width={styles.imgWidth}
+                height={styles.imgHeight}
+                imageWidth={350}
                 onCrop={onCrop}
                 onClose={onClose}
                 src={src}

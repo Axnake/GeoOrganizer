@@ -14,7 +14,7 @@
   }
 }
 
-.block__container {
+.blockContainer {
   display: flex;
   gap: 20px;
 }
@@ -50,20 +50,6 @@
   background: var(--green);
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-}
-
-.input__file input {
-
-  display: none;
-}
-
-.input__file{
-  @include Body;
-  color: var(--black);
-  background: var(--green);
-  display: flex;
-  justify-content: center;
   cursor: pointer;
 }
 
